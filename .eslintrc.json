@@ -15,7 +15,7 @@
   "comma-dangle": 0,
   "class-methods-use-this": 0,
   "func-names": 0,
-  "no-multiple-empty-lines": [2, { "max": 2 }],
+  "no-multiple-empty-lines": [2, { "max": 1 }],
   "no-trailing-spaces": 2,
   "new-cap": [2, {"capIsNewExceptions": ["TouchSpin", "Messenger", "$.Event", "Component", "Toast", "MessageBox"]}],
   "no-multi-spaces": [2, {"exceptions": { "VariableDeclarator": true }}],
