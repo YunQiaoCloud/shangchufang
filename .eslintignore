@@ -1,0 +1,6 @@
+/build/
+/config/
+/dist/
+**/util/
+/*.js
+**/registerServiceWorker.js
