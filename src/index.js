@@ -11,7 +11,7 @@ import createHashHistory from 'history/createBrowserHistory'
 // create-react-app 配置
 import './style/index.css'
 import App from './App'
-import TestPage from './TestPage'
+import TestMock from './TestMock'
 import registerServiceWorker from './registerServiceWorker'
 
 // history 模式
@@ -21,7 +21,7 @@ ReactDOM.render(
   <Router history={history}>
     <Switch>
       <Route exact path="/" component={App} />
-      <Route exact path="/test_page" component={TestPage} />
+      <Route exact path="/test" component={TestMock} />
     </Switch>
   </Router>,
   document.getElementById('root')

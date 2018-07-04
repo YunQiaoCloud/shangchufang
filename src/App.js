@@ -1,6 +1,8 @@
 import React, {
   Component
 } from 'react'
+import $ from 'jquery'
+import Mock from 'mockjs'
 import logo from './assets/logo.svg'
 
 class App extends Component {
@@ -9,7 +11,25 @@ class App extends Component {
     testData1: '11111'
   }
 
+  initMockData() {
+    Mock.mock(/menu/, {
+      'list|1-10': [{
+        'id|+1': 1,
+        email: '@EMAIL'
+      }]
+    })
+
+    $.ajax({
+      url: 'menu',
+      method: 'post',
+      dataType: 'json'
+    }).done(function(data, status, jqXHR) {
+      console.log(data, status, jqXHR)
+    })
+  }
+
   render() {
+    this.initMockData()
     // 模板使用的数据需要先解构定义
     const {
       testData,
