@@ -10,7 +10,8 @@ import createHashHistory from 'history/createBrowserHistory'
 
 // create-react-app 配置
 import './style/index.css'
-import App from './App'
+
+import Home from './pages/Home/Index'
 import TestMock from './TestMock'
 import registerServiceWorker from './registerServiceWorker'
 
@@ -20,10 +21,10 @@ const history = createHashHistory()
 ReactDOM.render(
   <Router history={history}>
     <Switch>
-      <Route exact path="/" component={App} />
+      <Route exact path="/" component={Home} />
       <Route exact path="/test" component={TestMock} />
     </Switch>
   </Router>,
-  document.getElementById('root')
+  document.getElementById('App')
 )
 registerServiceWorker()
