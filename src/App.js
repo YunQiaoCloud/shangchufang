@@ -44,7 +44,7 @@ class App extends Component {
           testData: '变动更新'
         })
       })
-    }, 3000)
+    }, 3999)
     return (
       <div className="App">
         <header className="App-header">
