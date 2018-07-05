@@ -5,6 +5,7 @@ import { WingBlank, WhiteSpace } from 'antd-mobile'
 import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'
+import Banner from './Banner'
 import data from '../../assets/data'
 
 class Home extends Component {
@@ -37,6 +38,9 @@ class Home extends Component {
       <WingBlank size="lg" className="Home">
         <WhiteSpace size="lg" />
         <SearchBar />
+        <WhiteSpace size="lg" />
+        <Banner />
+        <WhiteSpace size="lg" />
         <Tab
           tab={tab}
           fullList={fullList}
