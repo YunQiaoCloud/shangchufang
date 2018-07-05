@@ -5,5 +5,7 @@ body,
   background: #fff; }
 
 body {
+  color: #383838;
+  font-size: 40px;
   line-height: 1.5;
-  font-family: "Helvetica Neue", Helvetica,Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif; }
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica,Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif; }

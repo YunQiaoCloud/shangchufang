@@ -36,7 +36,8 @@
   "react/jsx-no-bind": 2,
   "react/no-multi-comp": 2,
   "react/jsx-uses-vars": [2],
-
+  "no-script-url": 0,
+  "jsx-a11y/anchor-is-valid": "off",
   "react/jsx-filename-extension": "off",
   "jsx-a11y/heading-has-content": "off",
   "import/no-unresolved": "off",

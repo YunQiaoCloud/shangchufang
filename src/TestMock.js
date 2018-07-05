@@ -12,7 +12,6 @@ class TestMock extends Component {
   }
 
   onRequest() {
-    console.log(1, this)
     Mock.mock(/menu/, {
       'list|1-10': [{
         'id|+1': 1,
@@ -25,9 +24,8 @@ class TestMock extends Component {
       method: 'post',
       dataType: 'json'
     }).done((list, status) => {
-      console.log(status, list, this)
       if (status === 'success') {
-        this.setState(state => Object.assign({}, state, { list, reqStatus: status }))
+        this.setState(() => ({ list, reqStatus: status }))
       }
     })
   }
