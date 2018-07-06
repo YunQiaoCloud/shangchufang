@@ -12,7 +12,7 @@ import createHashHistory from 'history/createBrowserHistory'
 import './style/index.css'
 
 import Home from './pages/Home/Index'
-import TestMock from './TestMock'
+import Detail from './pages/Detail/Index'
 import registerServiceWorker from './registerServiceWorker'
 
 // history 模式
@@ -22,7 +22,7 @@ ReactDOM.render(
   <Router history={history}>
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/test" component={TestMock} />
+      <Route exact path="/detail/:id" component={Detail} />
     </Switch>
   </Router>,
   document.getElementById('App')
