@@ -5,6 +5,9 @@ body,
 #App {
   background: #fff; }
 
+* {
+  touch-action: none; }
+
 body {
   color: #383838;
   font-size: 40px;
