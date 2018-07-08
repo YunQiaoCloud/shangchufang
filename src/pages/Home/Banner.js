@@ -1,10 +1,32 @@
 import React, { Component } from 'react'
 import { Carousel } from 'antd-mobile'
 import axios from 'axios'
+import coverLoading from '../../assets/banner_loading.svg'
 
 class Banner extends Component {
   state = {
-    banner: []
+    banner: [
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+    ]
   }
 
   async componentDidMount() {
