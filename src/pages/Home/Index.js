@@ -2,29 +2,26 @@ import React, {
   Component
 } from 'react'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
-import $ from 'jquery'
+import axios from 'axios'
 import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'
 import Banner from './Banner'
-import data from '../../assets/data'
 
 class Home extends Component {
   state = {
-    tab: [],
-    activedIndex: -1,
-    fullList: [],
+    recommendCategory: [],
+    activedIndex: 1,
+    category: [],
   }
 
-  componentDidMount() {
-    $.get('/api/banner')
-    // tab 添加全部菜系按钮
-    const tab = [{
+  async componentDidMount() {
+    const res = await axios.get('/api/category')
 
-    }]
+    const recommendCategory = [].concat(res.data.recommend)
+
     // 数据里前两种菜系提取出来，作为 tab，其他放进全部菜系里
-    tab.push(...data.slice(0, 2))
-    this.setState(() => ({ tab, fullList: data.slice(2) }))
+    this.setState(() => ({ recommendCategory, category: res.data.category }))
   }
 
   setActivedIndex(index) {
@@ -33,7 +30,7 @@ class Home extends Component {
 
   render() {
     const {
-      tab, fullList, activedIndex, indexIsDefault
+      category, recommendCategory, activedIndex
     } = this.state
 
     return (
@@ -44,13 +41,13 @@ class Home extends Component {
         <Banner />
         <WhiteSpace size="lg" />
         <Tab
-          tab={tab}
-          fullList={fullList}
+          category={category}
+          recommendCategory={recommendCategory}
           activedIndex={activedIndex}
           setActivedIndex={index => this.setActivedIndex(index)}
         />
         <WhiteSpace size="lg" />
-        <Content activedIndex={activedIndex} />
+        <Content activedIndex={activedIndex} recommendCategory={recommendCategory} />
       </WingBlank>
     )
   }

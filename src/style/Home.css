@@ -61,6 +61,8 @@
   width: 20%;
   color: inherit;
   border-radius: 10px;
+  white-space: pre;
+  overflow: hidden;
   background-color: #f5f5f5;
   transition: all 0.1s cubic-bezier(0.895, 0.03, 0.685, 0.22); }
   .Home-tab-item.actived {

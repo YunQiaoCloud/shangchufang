@@ -46,7 +46,6 @@ class Detail extends Component {
 
   render() {
     const { detail } = this.state
-    console.log(detail)
     const coverStyle = {
       backgroundImage: `url(${_.get(detail.albums, '[0]')})`
     }

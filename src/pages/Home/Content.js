@@ -1,40 +1,36 @@
 import React, { Component } from 'react'
 import QueueAnim from 'rc-queue-anim'
+import axios from 'axios'
 import tabItemData0 from './tabItemData0'
 import Sidebar from './Sidebar'
-import tabItemData1 from './tabItemData1'
-import tabItemData2 from './tabItemData2'
-import tabItemData3 from './tabItemData3'
 
 class Content extends Component {
+  state = {
+    list: []
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.getCook(nextProps)
+  }
+
+  async getCook(props) {
+    const { activedIndex, recommendCategory } = props
+
+    // tab 第一个是手动添加进去的全部按钮，所以获取数据的时候要减去 1
+    const activedCategory = recommendCategory[activedIndex - 1]
+    if (activedCategory) {
+      const res = await axios.get(`/api/cook/${activedCategory.id}`)
+      this.setState(() => ({ list: res.data }))
+    }
+  }
+
   changeFood(index) {
     console.log(index)
   }
 
   render() {
     const { activedIndex } = this.props
-
-    let data = []
-
-    // 找到当前 tab 序列对应的数据
-    switch (activedIndex) {
-    case 0:
-      data = []
-      break
-    case 2:
-
-      data = [].concat(tabItemData2)
-      break
-    case 3:
-
-      data = [].concat(tabItemData3)
-      break
-
-    default:
-    // 1 是默认值
-      data = [].concat(tabItemData1)
-      break
-    }
+    const { list } = this.state
 
     // 通过屏幕大小计算截取字符串的倍数
     const documentWidth = document.documentElement.clientWidth
@@ -42,7 +38,7 @@ class Content extends Component {
 
     // 除了第一个 tab，其他 tab 正常显示分类下的数据，第一个 tab 显示所有分类。
     if (activedIndex !== 0) {
-      dom = data.slice(0, 10).map((item) => {
+      dom = list.map((item) => {
         let imtro = item.imtro
 
         // 大于1536 是 ipad，不用截取
