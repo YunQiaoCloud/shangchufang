@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
+import $ from 'jquery'
 import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'
@@ -16,6 +17,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    $.get('/api/banner')
     // tab 添加全部菜系按钮
     const tab = [{
 
