@@ -2,9 +2,11 @@
   "name": "shangchufang",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://127.0.0.1:7001",
   "dependencies": {
     "antd-mobile": "^2.2.1",
     "autoprefixer": "7.1.6",
+    "axios": "^0.18.0",
     "babel-core": "6.26.0",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
@@ -56,6 +58,7 @@
   "devDependencies": {
     "babel-eslint": "^8.2.5",
     "babel-plugin-import": "^1.8.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",

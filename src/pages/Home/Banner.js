@@ -1,27 +1,67 @@
-import React from 'react'
-import { Carousel, WingBlank } from 'antd-mobile'
-import tabItemData0 from './tabItemData0'
+import React, { Component } from 'react'
+import { Carousel } from 'antd-mobile'
+import axios from 'axios'
+import coverLoading from '../../assets/banner_loading.svg'
 
-const Banner = function() {
-  const dom = tabItemData0.slice(0, 4).map((item) => {
+class Banner extends Component {
+  state = {
+    banner: [
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+      {
+        coverImg: coverLoading,
+        id: -1,
+        title: '获取中...'
+      },
+    ]
+  }
+
+  async componentDidMount() {
+    try {
+      const res = await axios.get('/api/banner')
+      this.setState(() => ({ banner: res.data }))
+    } catch (err) {
+      console.log('获取数据失败')
+    }
+  }
+
+  render() {
+    const { banner } = this.state
+
+    const dom = banner.map((item) => {
+      return (
+        <a href="javascript:;" className="Home-banner-item" key={item.id}>
+          <img className="cover" src={item.coverImg} alt={item.title} />
+          <p className="title">
+            {item.title}
+          </p>
+        </a>
+      )
+    })
+
     return (
-      <a href="javascript:;" className="Home-banner-item" key={item.id}>
-        <img className="cover" src={item.albums[0]} alt={item.title} />
-        <p className="title">
-          {item.title}
-        </p>
-      </a>
+      <Carousel
+        className="Home-banner"
+        autoplay
+        infinite
+      >
+        {dom}
+      </Carousel>
     )
-  })
-  return (
-    <Carousel
-      className="Home-banner"
-      autoplay
-      infinite
-    >
-      {dom}
-    </Carousel>
-  )
+  }
 }
 
 export default Banner

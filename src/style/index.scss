@@ -4,6 +4,10 @@ body,
   background: #fff;
 }
 
+* {
+  touch-action: none;
+}
+
 body {
   color: #383838;
   font-size: 40px;
@@ -22,3 +26,4 @@ body {
 }
 
 @import './Home.css';
+@import './Detail.css';
