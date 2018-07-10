@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import QueueAnim from 'rc-queue-anim'
 import axios from 'axios'
-import tabItemData0 from './tabItemData0'
 import Sidebar from './Sidebar'
 
 class Content extends Component {
@@ -22,10 +21,6 @@ class Content extends Component {
       const res = await axios.get(`/api/cook/${activedCategory.id}`)
       this.setState(() => ({ list: res.data }))
     }
-  }
-
-  changeFood(index) {
-    console.log(index)
   }
 
   render() {
@@ -73,25 +68,8 @@ class Content extends Component {
         )
       })
     } else {
-      const food = tabItemData0.map((item) => {
-        return (
-          <div key={item.id}>
-            <div className="cover" />
-            <p>
-              {item.title}
-            </p>
-          </div>
-        )
-      })
-      console.log(food)
       dom = (
-        <div>
-          <Sidebar changeFood={index => this.changeFood(index)} />
-
-          <div>
-            {food}
-          </div>
-        </div>
+        <Sidebar />
       )
     }
 
@@ -107,9 +85,9 @@ class Content extends Component {
               </QueueAnim>
             )
             : (
-              <div>
+              <Fragment>
                 { dom }
-              </div>
+              </Fragment>
             )
         }
       </div>
