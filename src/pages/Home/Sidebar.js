@@ -1,19 +1,28 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 import data from './tabMenuData'
-import tabItemData0 from './tabItemData0'
 
 class Sidebar extends Component {
   state = {
     activedIndex: 0,
+    cooks: []
   }
 
-  changeFood(index) {
+  componentDidMount() {
+    // 加载时触发一下请求数据
+    this.changeFood(0)
+  }
+
+  async changeFood(index) {
     this.setState(() => ({ activedIndex: index }))
+
+    const res = await axios.get(`/api/cook/${data[index].id}`)
+    this.setState(() => ({ cooks: res.data }))
   }
 
   render() {
-    const { activedIndex } = this.state
-    const cook = tabItemData0.map((item) => {
+    const { activedIndex, cooks } = this.state
+    const cook = cooks.map((item) => {
       const style = {
         backgroundImage: `url(${item.albums[0]})`
       }

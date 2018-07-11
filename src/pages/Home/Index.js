@@ -16,7 +16,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get('/api/category')
+    const res = await axios.get('/api/categores')
 
     const recommendCategory = [].concat(res.data.recommend)
 

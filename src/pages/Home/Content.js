@@ -5,7 +5,8 @@ import Sidebar from './Sidebar'
 
 class Content extends Component {
   state = {
-    list: []
+    list: [],
+    isShowAnimate: true
   }
 
   componentWillReceiveProps(nextProps) {
@@ -14,18 +15,29 @@ class Content extends Component {
 
   async getCook(props) {
     const { activedIndex, recommendCategory } = props
+    const { list } = this.state
 
     // tab 第一个是手动添加进去的全部按钮，所以获取数据的时候要减去 1
     const activedCategory = recommendCategory[activedIndex - 1]
+
     if (activedCategory) {
       const res = await axios.get(`/api/cook/${activedCategory.id}`)
+
+      // 只在第一次加载数据的时候显示动画
+      if (list.length) {
+        this.setState(() => ({ isShowAnimate: false }))
+      }
+
       this.setState(() => ({ list: res.data }))
     }
   }
 
   render() {
     const { activedIndex } = this.props
-    const { list } = this.state
+    const {
+      list,
+      isShowAnimate
+    } = this.state
 
     // 通过屏幕大小计算截取字符串的倍数
     const documentWidth = document.documentElement.clientWidth
@@ -77,8 +89,7 @@ class Content extends Component {
     // 根据 activedIndex class 控制标签的位置
       <div className="Home-content">
         {
-          // 第一次进入的时候才启用动画
-          activedIndex === -1
+          isShowAnimate
             ? (
               <QueueAnim>
                 {dom}
