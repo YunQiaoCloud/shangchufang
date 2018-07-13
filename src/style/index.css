@@ -1,5 +1,6 @@
 @import url(./Home.css);
 @import url(./Detail.css);
+@import url(./Search.css);
 html,
 body,
 #App {
@@ -15,3 +16,6 @@ body {
   font-family: "PingFang SC", "Helvetica Neue", Helvetica,Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
   width: 100%;
   overflow-x: hidden; }
+
+.vertical {
+  -webkit-box-orient: vertical; }

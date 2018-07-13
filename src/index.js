@@ -13,6 +13,7 @@ import './style/index.css'
 
 import Home from './pages/Home/Index'
 import Detail from './pages/Detail/Index'
+import Search from './pages/Search/Index'
 import registerServiceWorker from './registerServiceWorker'
 
 // history 模式
@@ -23,6 +24,7 @@ ReactDOM.render(
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/detail/:id" component={Detail} />
+      <Route exact path="/search" component={Search} />
     </Switch>
   </Router>,
   document.getElementById('App')
