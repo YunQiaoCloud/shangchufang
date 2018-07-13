@@ -2,6 +2,7 @@ import React, {
   Component
 } from 'react'
 import _ from 'lodash'
+import axios from 'axios'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
 import tabItemData0 from '../Home/tabItemData0'
 import tabItemData1 from '../Home/tabItemData1'
@@ -25,6 +26,8 @@ class Detail extends Component {
   componentDidMount() {
     const { match } = this.props
     this.getDetail(match.params.id)
+
+    axios.get('/api/search?q=红烧鲈鱼')
   }
 
   getDetail(id) {

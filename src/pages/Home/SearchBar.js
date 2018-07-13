@@ -4,19 +4,44 @@ import { SearchBar, WingBlank, WhiteSpace } from 'antd-mobile'
 
 class SearchBarWrap extends Component {
   state = {
-    isFocus: false
+    isFocus: false,
+    value: ''
   }
 
   onFocus() {
-    this.setState(() => ({ isFocus: true }))
+    const {
+      isHideCover
+    } = this.props
+    if (!isHideCover) {
+      this.setState(() => ({ isFocus: true }))
+    }
   }
 
   onCancel() {
     this.setState(() => ({ isFocus: false }))
+    this.setState(() => ({ value: '' }))
+  }
+
+  onChange(val) {
+    this.setState(() => ({ value: val }))
+  }
+
+  onSubmit(value) {
+    this.onCancel()
+    const { onSearch } = this.props
+    onSearch(value)
+    this.setState(() => ({ value }))
   }
 
   render() {
-    const { isFocus } = this.state
+    const {
+      isFocus,
+      value
+    } = this.state
+    const {
+      defaultValue
+    } = this.props
+
     const dom = [1, 2].map((item, index) => {
       return (
         <div className="Home-search-recommend-item" onClick={e => e.stopPropagation()} key={item}>
@@ -26,14 +51,19 @@ class SearchBarWrap extends Component {
         </div>
       )
     })
+
     return (
       <div className={`Home-search ${isFocus ? 'focused' : ''}`}>
         <SearchBar
+          value={
+            value || defaultValue
+          }
           placeholder="搜索菜谱"
           type="password"
+          onChange={val => this.onChange(val)}
           onFocus={() => this.onFocus()}
           onCancel={() => this.onCancel()}
-          onSubmit={() => this.onCancel()}
+          onSubmit={q => this.onSubmit(q)}
         />
         {
           isFocus
