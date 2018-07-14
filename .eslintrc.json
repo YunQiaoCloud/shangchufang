@@ -44,6 +44,8 @@
   "jsx-a11y/heading-has-content": "off",
   "import/no-unresolved": "off",
   "import/extensions": "off",
-  "import/no-extraneous-dependencies": "off"
+  "import/no-extraneous-dependencies": "off",
+  "linebreak-style": "off",
+  "react/jsx-one-expression-per-line": "off"
 }
 }

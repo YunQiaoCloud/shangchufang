@@ -40,7 +40,6 @@ class Detail extends Component {
         break
       }
     }
-
     this.setState(() => ({ detail }))
   }
 
@@ -60,11 +59,36 @@ class Detail extends Component {
       )
     })
 
+    // 整理用料数据
+    const materialStr = `${detail.ingredients};${detail.burden}`
+    const materialDom = materialStr.split(';').filter(item => item).map((item) => {
+      return (
+        <p key={item} className="Detail-material-item">
+          <span>
+            {item.split(',')[0]}
+          </span>
+          <span>
+            {item.split(',')[1]}
+          </span>
+        </p>
+      )
+    })
+
+    // 做法步骤
+    const practiceDom = detail.steps.map((item) => {
+      return (
+        <div key={item.step} className="Detail-step">
+          <p>{item.step}</p>
+          <img src={item.img} alt={item.step} />
+        </div>
+      )
+    })
+
     return (
       <div className="Detail">
         <div className="Detail-cover" style={coverStyle} />
         <WingBlank>
-          <h1 className="Detail-title">
+          <h1 className="Detail-title" title={detail.title}>
             {detail.title}
           </h1>
           <div className="Detail-tag">
@@ -73,11 +97,17 @@ class Detail extends Component {
           <p className="Detail-imtro">
             {detail.imtro}
           </p>
-
-          <div className="comtent">
-            <p>
-              {detail.burden}
-            </p>
+          <h1 className="Detail-title" title="用料">
+            用料
+          </h1>
+          <div className="Detail-material">
+            {materialDom}
+          </div>
+          <h1 className="Detail-title" title={detail.title}>
+            {detail.title}的做法
+          </h1>
+          <div className="Detail-practice">
+            {practiceDom}
           </div>
         </WingBlank>
       </div>
