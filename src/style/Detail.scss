@@ -30,5 +30,29 @@
   font-weight: 500;
 }
 
+.Detail-material-item {
+  display: flex;
+  padding: 10px 0;
+  border-bottom: 2px solid #d5d5d5;
+  justify-content: space-between;
+}
 
+.Detail-step {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+  height: 150px;
 
+  p {
+    margin: 0;
+  }
+
+  p::first-letter {
+    font-size: 40px;
+    font-weight: bold;
+  }
+
+  img {
+    margin-left: 10px;
+  }
+}

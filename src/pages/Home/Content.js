@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom'
 import QueueAnim from 'rc-queue-anim'
 import axios from 'axios'
 import Sidebar from './Sidebar'
@@ -66,11 +67,13 @@ class Content extends Component {
         return (
           <div className="Home-content-item" key={item.id}>
             <div className="cover">
-              <img src={item.albums[0]} alt={item.title} width="100%" />
+              <Link to="/detail/585">
+                <img src={item.albums[0]} alt={item.title} width="100%" />
+              </Link>
             </div>
             <div className="content">
               <p className="title">
-                {item.title}
+                <Link to={`/detail/${item.id}`}>{item.title}</Link>
               </p>
               <p className="imtro">
                 {imtro}
