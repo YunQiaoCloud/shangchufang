@@ -23,7 +23,7 @@ class Search extends Component {
 
   async search(q) {
     try {
-      const res = await axios.get(`/api/search?q=${q}`)
+      const res = await api.search(q)
       this.setState(() => ({ cook: res.data }))
     } catch (err) {
       this.setState(() => ({ cook: [] }))

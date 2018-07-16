@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Carousel } from 'antd-mobile'
-import axios from 'axios'
 import coverLoading from '../../assets/banner_loading.svg'
+import api from '../../api'
 
 class Banner extends Component {
   state = {
@@ -31,7 +31,7 @@ class Banner extends Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get('/api/banner')
+      const res = await api.getBanner()
       this.setState(() => ({ banner: res.data }))
     } catch (err) {
       console.log('获取数据失败')

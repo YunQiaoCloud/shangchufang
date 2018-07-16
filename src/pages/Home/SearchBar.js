@@ -29,6 +29,7 @@ class SearchBarWrap extends Component {
   onSubmit(value) {
     this.onCancel()
     const { onSearch } = this.props
+
     onSearch(value)
     this.setState(() => ({ value }))
   }
@@ -55,9 +56,6 @@ class SearchBarWrap extends Component {
     return (
       <div className={`Home-search ${isFocus ? 'focused' : ''}`}>
         <SearchBar
-          value={
-            value || defaultValue
-          }
           placeholder="搜索菜谱"
           type="password"
           onChange={val => this.onChange(val)}
