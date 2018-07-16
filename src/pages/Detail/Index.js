@@ -2,12 +2,8 @@ import React, {
   Component
 } from 'react'
 import _ from 'lodash'
-import axios from 'axios'
-import { WingBlank, WhiteSpace } from 'antd-mobile'
-import tabItemData0 from '../Home/tabItemData0'
-import tabItemData1 from '../Home/tabItemData1'
-import tabItemData2 from '../Home/tabItemData2'
-import tabItemData3 from '../Home/tabItemData3'
+import { WingBlank } from 'antd-mobile'
+import api from '../../api/index'
 
 class Detail extends Component {
   state = {
@@ -23,27 +19,11 @@ class Detail extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const { match } = this.props
-    this.getDetail(match.params.id)
 
-    axios.get('/api/search?q=红烧鲈鱼')
-  }
-
-  getDetail(id) {
-    const array = tabItemData0.concat(tabItemData1)
-      .concat(tabItemData2)
-      .concat(tabItemData3)
-    const length = array.length
-    let detail = {}
-
-    for (let i = 0; i < length; i += 1) {
-      if (array[i].id === id) {
-        detail = array[i]
-        break
-      }
-    }
-    this.setState(() => ({ detail }))
+    const res = await api.getCookDetail(match.params.id)
+    this.setState(() => ({ detail: res.data }))
   }
 
   render() {
