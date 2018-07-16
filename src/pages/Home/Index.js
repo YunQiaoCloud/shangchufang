@@ -2,7 +2,6 @@ import React, {
   Component
 } from 'react'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
-import axios from 'axios'
 import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'

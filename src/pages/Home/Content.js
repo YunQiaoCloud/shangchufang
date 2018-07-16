@@ -66,21 +66,19 @@ class Content extends Component {
         }
 
         return (
-          <div className="Home-content-item" key={item.id}>
+          <Link to={`/detail/${item.id}`} className="Home-content-item" key={item.id}>
             <div className="cover">
-              <Link to="/detail/585">
-                <img src={item.albums[0]} alt={item.title} width="100%" />
-              </Link>
+              <img src={item.albums[0]} alt={item.title} width="100%" />
             </div>
             <div className="content">
               <p className="title">
-                <Link to={`/detail/${item.id}`}>{item.title}</Link>
+                {item.title}
               </p>
               <p className="imtro">
                 {imtro}
               </p>
             </div>
-          </div>
+          </Link>
         )
       })
     } else {
