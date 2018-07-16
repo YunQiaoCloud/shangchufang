@@ -1,5 +1,7 @@
-import api from './index'
-
-api.search = function() {
-
+export default {
+  search(q) {
+    return this.$req({
+      url: `/search?q=${q}`
+    })
+  },
 }

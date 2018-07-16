@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import data from './tabMenuData'
+import api from '../../api'
 
 class Sidebar extends Component {
   state = {
@@ -16,7 +17,7 @@ class Sidebar extends Component {
   async changeFood(index) {
     this.setState(() => ({ activedIndex: index }))
 
-    const res = await axios.get(`/api/cook/${data[index].id}`)
+    const res = await api.getCooks(data[index].id)
     this.setState(() => ({ cooks: res.data }))
   }
 

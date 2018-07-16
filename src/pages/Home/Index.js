@@ -7,6 +7,7 @@ import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'
 import Banner from './Banner'
+import api from '../../api'
 
 class Home extends Component {
   state = {
@@ -16,7 +17,7 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    const res = await axios.get('/api/categores')
+    const res = await api.getCategores()
 
     const recommendCategory = [].concat(res.data.recommend)
 

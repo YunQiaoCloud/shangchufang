@@ -1,7 +1,10 @@
 import axios from 'axios'
 import cook from './cook'
+import banner from './banner'
+import search from './search'
+import categores from './categores'
 
-const api = Object.assign({}, cook)
+const api = Object.assign({}, cook, banner, search, categores)
 
 api.$request = async function({
   url,

@@ -1,7 +1,7 @@
 export default {
-  getBanner() {
+  getCategores() {
     return this.$req({
-      url: '/banner'
+      url: '/categores'
     })
   },
 }

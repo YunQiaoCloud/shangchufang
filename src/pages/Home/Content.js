@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import QueueAnim from 'rc-queue-anim'
 import axios from 'axios'
 import Sidebar from './Sidebar'
+import api from '../../api'
 
 class Content extends Component {
   state = {
@@ -22,7 +23,7 @@ class Content extends Component {
     const activedCategory = recommendCategory[activedIndex - 1]
 
     if (activedCategory) {
-      const res = await axios.get(`/api/cook/${activedCategory.id}`)
+      const res = await api.getCooks(activedCategory.id)
 
       // 只在第一次加载数据的时候显示动画
       if (list.length) {
