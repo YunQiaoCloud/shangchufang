@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import queryString from 'query-string'
 import {
   WingBlank,
   WhiteSpace
@@ -16,9 +15,20 @@ class Search extends Component {
     const {
       location
     } = this.props
-    const q = queryString.parse(location.search).q
+    const q = this.queryString(location.search)
     this.setState(() => ({ q }))
     this.search(q)
+  }
+
+  queryString(src) {
+    const reg = new RegExp(`(^|&)${'q'}=([^&]*)(&|$)`)
+    const r = src.substr(1).match(reg)
+
+    if (r) {
+      return decodeURI(r[2])
+    }
+
+    return null
   }
 
   async search(q) {
@@ -39,7 +49,7 @@ class Search extends Component {
       location
     } = this.props
 
-    const q = queryString.parse(location.search).q
+    const q = this.queryString(location.search)
 
     const dom = cook.map((item) => {
       const style = {
