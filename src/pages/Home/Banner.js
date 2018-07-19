@@ -42,6 +42,7 @@ class Banner extends Component {
     const { banner } = this.state
 
     const dom = banner.map((item) => {
+      console.log(item)
       return (
         <a href="javascript:;" className="Home-banner-item" key={item.id}>
           <img className="cover" src={item.coverImg} alt={item.title} />

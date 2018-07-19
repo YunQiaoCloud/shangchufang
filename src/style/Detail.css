@@ -35,11 +35,15 @@
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
-  height: 150px; }
+  min-height: 150px; }
   .Detail-step p {
-    margin: 0; }
+    margin: 0;
+    flex: 1; }
   .Detail-step p::first-letter {
     font-size: 40px;
     font-weight: bold; }
   .Detail-step img {
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
     margin-left: 10px; }

@@ -11,7 +11,7 @@ import api from '../../api'
 class Home extends Component {
   state = {
     recommendCategory: [],
-    activedIndex: 1,
+    activedIndex: 0,
     category: [],
   }
 
