@@ -1,100 +1,101 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { WingBlank, WhiteSpace } from 'antd-mobile'
-import QueueAnim from 'rc-queue-anim'
-import PropTypes from 'prop-types'
-import TweenOne, { TweenOneGroup } from 'rc-tween-one'
-import coverLoading from '../../assets/banner_loading.svg'
-import data from '../Home/tabMenuData'
-import api from '../../api'
-import SearchBar from '../Home/SearchBar'
+import React, {
+  Component
+} from 'react'
+import _ from 'lodash'
+import { WingBlank } from 'antd-mobile'
+import api from '../../api/index'
 
-class List extends Component {
+class Detail extends Component {
   state = {
-    activedIndex: 0,
-    cooks: [
-      {
-        albums: {
-          0: coverLoading
-        },
-        id: '0',
-        title: '获取中...'
-      },
-      {
-        albums: {
-          0: coverLoading
-        },
-        id: '1',
-        title: '获取中...'
-      },
-      {
-        albums: {
-          0: coverLoading
-        },
-        id: '2',
-        title: '获取中...'
-      }
-    ]
+    detail: {
+      title: '',
+      tags: '',
+      albums: [],
+      burden: '',
+      id: -1,
+      imtro: '',
+      ingredients: '',
+      steps: [],
+    }
   }
 
-  componentDidMount() {
-    // 加载时触发一下请求数据
-    this.changeFood(0)
-  }
+  async componentDidMount() {
+    const { match } = this.props
 
-  async changeFood(index) {
-    this.setState(() => ({ activedIndex: index }))
-
-    const res = await api.getCooks(data[index].id)
-    this.setState(() => ({ cooks: res.data }))
+    const res = await api.getCookDetail(match.params.id)
+    this.setState(() => ({ detail: res.data }))
   }
 
   render() {
-    const { activedIndex, cooks } = this.state
-    const cook = cooks.map((item, index) => {
-      const style = {
-        backgroundImage: `url(${item.albums[0]})`
-      }
+    const { detail } = this.state
+    const coverStyle = {
+      backgroundImage: `url(${_.get(detail.albums, '[0]')})`
+    }
+
+    // 标签按照 ; 切割输出成数组，之后套上 span 渲染为 dom
+    const tagDom = detail.tags.split(';').map((item) => {
       return (
-        <Link to={`/detail/${item.id}`} className="Home-content-item" key={item.id}>
-          <div className="cook">
-            <div className="cover" style={style} />
-            <p className="title">
-              {item.title}
-            </p>
-          </div>
-        </Link>
+        <span key={item} className="Detail-tag-item">
+          {item}
+          {' '}
+        </span>
       )
     })
-    const dom = data.map((item, index) => {
+
+    // 整理用料数据
+    const materialStr = `${detail.ingredients};${detail.burden}`
+    const materialDom = materialStr.split(';').filter(item => item).map((item) => {
       return (
-        <a
-          key={item.id}
-          href="javascript:;"
-          className={activedIndex === index ? 'actived' : ''}
-          onClick={() => this.changeFood(index)}
-        >
-          {item.name}
-        </a>
+        <p key={item} className="Detail-material-item">
+          <span>
+            {item.split(',')[0]}
+          </span>
+          <span>
+            {item.split(',')[1]}
+          </span>
+        </p>
+      )
+    })
+
+    // 做法步骤
+    const practiceDom = detail.steps.map((item) => {
+      return (
+        <div key={item.step} className="Detail-step">
+          <p>{item.step}</p>
+          <img src={item.img} alt={item.step} />
+        </div>
       )
     })
 
     return (
-      <WingBlank>
-        <WhiteSpace size="lg" />
-        <SearchBar />
-        <WhiteSpace size="lg" />
-        <div className="Home-content-all">
-          <div className="Sidebar">
-            {dom}
+      <div className="Detail">
+        <div className="Detail-cover" style={coverStyle} />
+        <WingBlank>
+          <h1 className="Detail-title" title={detail.title}>
+            {detail.title}
+          </h1>
+          <div className="Detail-tag">
+            {tagDom}
           </div>
-          <div className="Home-content-all-cook">
-            {cook}
+          <p className="Detail-imtro">
+            {detail.imtro}
+          </p>
+          <h1 className="Detail-title" title="用料">
+            用料
+          </h1>
+          <div className="Detail-material">
+            {materialDom}
           </div>
-        </div>
-      </WingBlank>
+          <h1 className="Detail-title" title={detail.title}>
+            {detail.title}的做法
+          </h1>
+          <div className="Detail-practice">
+            {practiceDom}
+          </div>
+        </WingBlank>
+      </div>
     )
   }
 }
 
-export default List
+export default Detail

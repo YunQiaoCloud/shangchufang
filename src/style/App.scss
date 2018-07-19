@@ -1,0 +1,29 @@
+html,
+body,
+#App {
+  background: #fff;
+}
+
+* {
+  touch-action: none;
+}
+
+body {
+  color: #383838;
+  font-size: 28px;
+  line-height: 1.5;
+  font-family: "PingFang SC", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.vertical {
+  -webkit-box-orient: vertical;
+}
+
+@import './Home.scss';
+@import './Detail.scss';
+@import './Search.scss';
+@import './List.scss';
+@import './Search.scss';
+@import './normalize.scss';

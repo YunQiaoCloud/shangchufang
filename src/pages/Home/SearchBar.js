@@ -4,8 +4,7 @@ import { SearchBar, WingBlank, WhiteSpace } from 'antd-mobile'
 
 class SearchBarWrap extends Component {
   state = {
-    isFocus: false,
-    value: ''
+    isFocus: false
   }
 
   onFocus() {
@@ -36,12 +35,8 @@ class SearchBarWrap extends Component {
 
   render() {
     const {
-      isFocus,
-      value
+      isFocus
     } = this.state
-    const {
-      defaultValue
-    } = this.props
 
     const dom = [1, 2].map((item, index) => {
       return (

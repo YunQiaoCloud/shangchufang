@@ -34,7 +34,7 @@ class Banner extends Component {
       const res = await api.getBanner()
       this.setState(() => ({ banner: res.data }))
     } catch (err) {
-      console.log('获取数据失败')
+      // console.log('获取数据失败')
     }
   }
 
@@ -42,7 +42,6 @@ class Banner extends Component {
     const { banner } = this.state
 
     const dom = banner.map((item) => {
-      console.log(item)
       return (
         <a href="javascript:;" className="Home-banner-item" key={item.id}>
           <img className="cover" src={item.coverImg} alt={item.title} />

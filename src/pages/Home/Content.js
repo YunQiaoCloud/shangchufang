@@ -32,7 +32,6 @@ class Content extends Component {
   }
 
   render() {
-    const { activedIndex } = this.props
     const {
       list,
       isShowAnimate

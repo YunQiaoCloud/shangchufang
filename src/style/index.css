@@ -1,22 +1,0 @@
-@import url(./Home.css);
-@import url(./Detail.css);
-@import url(./Search.css);
-@import url(./List.css);
-html,
-body,
-#App {
-  background: #fff; }
-
-* {
-  touch-action: none; }
-
-body {
-  color: #383838;
-  font-size: 40px;
-  line-height: 1.5;
-  font-family: "PingFang SC", "Helvetica Neue", Helvetica,Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
-  width: 100%;
-  overflow-x: hidden; }
-
-.vertical {
-  -webkit-box-orient: vertical; }
