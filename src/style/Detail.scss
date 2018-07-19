@@ -42,10 +42,11 @@
   display: flex;
   justify-content: space-between;
   margin: 50px 0;
-  height: 150px;
+  min-height: 150px;
 
   p {
     margin: 0;
+    flex: 1;
   }
 
   p::first-letter {
@@ -54,6 +55,9 @@
   }
 
   img {
+    width: 150px;
+    height: 150px;
+    margin-top: 20px;
     margin-left: 10px;
   }
 }

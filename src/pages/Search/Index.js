@@ -4,7 +4,6 @@ import {
   WingBlank,
   WhiteSpace
 } from 'antd-mobile'
-import axios from 'axios'
 import SearchBar from '../Home/SearchBar'
 
 class Search extends Component {

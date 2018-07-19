@@ -6,7 +6,7 @@ const Tab = function(props) {
   } = props
 
   // 第一个 tab 为“全部”按钮，显示所有菜系
-  const tabs = [{ name: '全部', id: '09', parentId: '0' }].concat(recommendCategory).map((item, index) => {
+  const tabs = recommendCategory.map((item, index) => {
     // 根据 props 的 slectedIndex 设置默认选中的 tab
     const classNameStatus = index === activedIndex ? 'actived' : ''
     return (
