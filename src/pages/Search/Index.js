@@ -4,6 +4,7 @@ import {
   WhiteSpace
 } from 'antd-mobile'
 import SearchBar from '../Home/SearchBar'
+import api from '../../api'
 
 class Search extends Component {
   state = {

@@ -1,6 +1,4 @@
-import React, {
-  Component
-} from 'react'
+import React, { Component } from 'react'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
 import SearchBar from './SearchBar'
 import Tab from './Tab'

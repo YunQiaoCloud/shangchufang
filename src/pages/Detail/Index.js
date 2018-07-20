@@ -21,7 +21,6 @@ class Detail extends Component {
 
   async componentDidMount() {
     const { match } = this.props
-
     const res = await api.getCookDetail(match.params.id)
     this.setState(() => ({ detail: res.data }))
   }

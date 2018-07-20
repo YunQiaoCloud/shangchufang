@@ -5,17 +5,12 @@ import Detail from '../pages/Detail/Index'
 
 export default [
   {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
     path: '/list',
     name: 'List',
     component: List
   },
   {
-    path: '/detail',
+    path: '/detail/:id',
     name: 'Detail',
     component: Detail
   },
@@ -23,5 +18,10 @@ export default [
     path: '/search',
     name: 'Search',
     component: Search
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
   }
 ]
