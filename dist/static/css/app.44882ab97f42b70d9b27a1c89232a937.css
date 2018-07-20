@@ -1008,7 +1008,7 @@ body {
     -webkit-box-flex: 1;
         -ms-flex: 1;
             flex: 1;
-    background-image: url(./static/img/food_loading.db3102d.svg);
+    background-image: url(../../../src/assets/food_loading.db3102d.svg);
     background-size: 100% auto;
     background-position: top left;
     background-repeat: no-repeat; }

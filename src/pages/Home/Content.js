@@ -1,12 +1,10 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import QueueAnim from 'rc-queue-anim'
 import api from '../../api'
 
 class Content extends Component {
   state = {
-    list: [],
-    isShowAnimate: true
+    list: []
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,8 +31,7 @@ class Content extends Component {
 
   render() {
     const {
-      list,
-      isShowAnimate
+      list
     } = this.state
 
     // 通过屏幕大小计算截取字符串的倍数
@@ -78,19 +75,7 @@ class Content extends Component {
     return (
     // 根据 activedIndex class 控制标签的位置
       <div className="Home-content">
-        {
-          isShowAnimate
-            ? (
-              <QueueAnim>
-                {dom}
-              </QueueAnim>
-            )
-            : (
-              <Fragment>
-                { dom }
-              </Fragment>
-            )
-        }
+        { dom }
       </div>
     )
   }

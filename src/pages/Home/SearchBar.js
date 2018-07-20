@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import TweenOne from 'rc-tween-one'
 import { SearchBar, WingBlank, WhiteSpace } from 'antd-mobile'
 
@@ -27,10 +28,12 @@ class SearchBarWrap extends Component {
 
   onSubmit(value) {
     this.onCancel()
-    const { onSearch } = this.props
-
-    onSearch(value)
-    this.setState(() => ({ value }))
+    const onSearch = this.props
+    const path = {
+      pathname: '/search',
+      search: `q=${value}`
+    }
+    onSearch.history.push(path)
   }
 
   render() {
@@ -87,4 +90,4 @@ class SearchBarWrap extends Component {
   }
 }
 
-export default SearchBarWrap
+export default withRouter(SearchBarWrap)
