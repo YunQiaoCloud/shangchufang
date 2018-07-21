@@ -10,6 +10,9 @@ import {
 import {
   toJS
 } from 'mobx'
+import {
+  Link
+} from 'react-router-dom'
 import banner from '../../api/banner'
 
 @observer
@@ -23,12 +26,12 @@ class Banner extends Component {
 
     const dom = banners.map((item) => {
       return (
-        <a href="javascript:;" className="Home-banner-item" key={item.id}>
+        <Link to={`/detail/${item.id}`} href="javascript:;" className="Home-banner-item" key={item.id}>
           <img className="cover" src={item.coverImg} alt={item.title} />
           <p className="title">
             {item.title}
           </p>
-        </a>
+        </Link>
       )
     })
 
