@@ -22,21 +22,20 @@ class Categores {
   @observable acviteIndex = -1
 
   // 推荐
-  @observable recommendList = []
+  @observable list = []
 
   // 全部
   @observable fullList = []
 
   @action async get() {
-    // 如果当前存储的种类小于 4 个，从服务器直接获取，否则不需要重复获取
-    if (this.recommendList.length < 4) {
+    if (!this.list.length) {
       const res = await categoresApi.get()
 
       // 合并当前数据和新获取到的数据，组成一个新的数组
-      const categores = this.recommendList.concat(res.data.recommend)
+      const categores = this.list.concat(res.data)
 
       // 根据 id 去掉数组里重复的部分（优先去掉从服务器获取的，因为旧数据内可能存有下属的菜单信息）
-      this.recommendList = uniqBy(categores, 'id').map((item) => {
+      this.list = uniqBy(categores, 'id').map((item) => {
         // 对每个对象添加 cookList 信息
         if (!item.cookList) {
           item.cookList = []

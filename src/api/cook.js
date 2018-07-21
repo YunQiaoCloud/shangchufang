@@ -42,7 +42,7 @@ class Cook {
   },
   async(acviteIndex) => {
     // 根据 acviteIndex 获取对应数据
-    const list = toJS(categores.recommendList)
+    const list = toJS(categores.list)
     const id = _.get(list[acviteIndex], 'id')
 
     if (typeof id !== 'undefined') {
@@ -60,7 +60,7 @@ class Cook {
       this.list = res.data
 
       // 写入 categores 种类信息里，下次再切换就无需重复获取，直接调用
-      categores.recommendList[acviteIndex].cookList = res.data
+      categores.list[acviteIndex].cookList = res.data
     }
   })
 }

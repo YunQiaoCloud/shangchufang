@@ -14,10 +14,10 @@ import categores from '../../api/categores'
 
   render() {
     const activeIndex = categores.acviteIndex
-    const categoresList = toJS(categores.recommendList)
+    const categoresList = toJS(categores.list)
 
-    // 第一个 tab 为“全部”按钮，显示所有菜系
-    const tabs = categoresList.map((item, index) => {
+    // tab 默认展示 4 个
+    const tabs = categoresList.slice(0, 4).map((item, index) => {
       // 根据 props 的 slectedIndex 设置默认选中的 tab
       const classNameStatus = index === activeIndex ? 'active' : ''
       return (
