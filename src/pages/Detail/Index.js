@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react'
 import _ from 'lodash'
-import { WingBlank } from 'antd-mobile'
+import { WingBlank, WhiteSpace } from 'antd-mobile'
 import api from '../../api/index'
 
 class Detail extends Component {
@@ -91,6 +91,7 @@ class Detail extends Component {
           <div className="Detail-practice">
             {practiceDom}
           </div>
+          <WhiteSpace size="lg" />
         </WingBlank>
       </div>
     )

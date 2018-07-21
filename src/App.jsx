@@ -2,14 +2,18 @@ import React from 'react'
 import { renderRoutes } from 'react-router-config'
 import { BrowserRouter as Router } from 'react-router-dom'
 import routes from 'routes'
+import TabBarNav from './components/TabBarNav'
 import './style/App.scss'
 
+// const withRouter = () => (
+// )
 const App = () => (
-  <div className="App">
-    <Router>
+  <Router>
+    <div className="App">
       {renderRoutes(routes)}
-    </Router>
-  </div>
+      <TabBarNav />
+    </div>
+  </Router>
 )
 
 export default App
