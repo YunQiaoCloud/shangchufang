@@ -4,6 +4,7 @@ import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'
 import Banner from './Banner'
+import TabBarNav from './TabBarNav'
 import api from '../../api'
 
 class Home extends Component {
@@ -46,6 +47,7 @@ class Home extends Component {
         />
         <WhiteSpace size="lg" />
         <Content activedIndex={activedIndex} recommendCategory={recommendCategory} />
+        <TabBarNav />
       </WingBlank>
     )
   }
