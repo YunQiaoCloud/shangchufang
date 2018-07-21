@@ -15,6 +15,18 @@ class TabBarNav extends Component {
     hidden: false
   }
 
+  onPress(switchTab) {
+    const path = {
+      pathname: '/'
+    }
+    // 振动效果
+    const supportsVibrate = 'vibrate' in window.navigator
+    if (supportsVibrate) {
+      window.navigator.vibrate(100)
+    }
+    switchTab.history.push(path)
+  }
+
   render() {
     const tabBarState = this.state
     const switchTab = this.props
@@ -35,12 +47,7 @@ class TabBarNav extends Component {
             selected={switchTab.location.pathname === '/'}
             title="推荐"
             key="Recommend"
-            onPress={() => {
-              const path = {
-                pathname: '/'
-              }
-              switchTab.history.push(path)
-            }}
+            onPress={() => this.onPress(switchTab)}
           />
           <TabBar.Item
             icon={{ uri: listTab }}
