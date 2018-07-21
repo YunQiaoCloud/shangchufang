@@ -2,31 +2,23 @@ import React, {
   Component
 } from 'react'
 import _ from 'lodash'
-import { WingBlank, WhiteSpace } from 'antd-mobile'
-import api from '../../api/index'
+import { WingBlank } from 'antd-mobile'
+import {
+  toJS
+} from 'mobx'
+import {
+  observer
+} from 'mobx-react'
+import cook from '../../api/cook'
 
-class Detail extends Component {
-  state = {
-    detail: {
-      title: '',
-      tags: '',
-      albums: [],
-      burden: '',
-      id: -1,
-      imtro: '',
-      ingredients: '',
-      steps: [],
-    }
-  }
-
-  async componentDidMount() {
-    const { match } = this.props
-    const res = await api.getCookDetail(match.params.id)
-    this.setState(() => ({ detail: res.data }))
+@observer class Detail extends Component {
+  componentDidMount() {
+    cook.getDetail(this.props.match.params.id)
   }
 
   render() {
-    const { detail } = this.state
+    const detail = toJS(cook.detail)
+
     const coverStyle = {
       backgroundImage: `url(${_.get(detail.albums, '[0]')})`
     }

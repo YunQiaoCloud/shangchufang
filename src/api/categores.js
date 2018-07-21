@@ -42,11 +42,6 @@ class Categores {
         }
         return item
       })
-
-      // 加载数据之后把选项卡默认设置为第一个，触发 cook 开始获取数据
-      if (this.acviteIndex === -1) {
-        this.acviteIndex = 0
-      }
     }
   }
 }

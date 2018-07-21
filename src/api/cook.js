@@ -1,5 +1,6 @@
 import {
   observable,
+  action,
   reaction,
   toJS,
 } from 'mobx'
@@ -63,6 +64,27 @@ class Cook {
       categores.list[acviteIndex].cookList = res.data
     }
   })
+
+  @action async getDetail(id) {
+    const list = toJS(categores.list)
+    let detail = null
+
+    for (let i = 0; i < list.length; i += 1) {
+      const index = _.findIndex(list[i].cookList, ['id', id])
+      if (index !== -1) {
+        detail = list[i].cookList[index]
+        break
+      }
+    }
+
+    // 如果没有从本地数据找到，则请求一次
+    if (!detail) {
+      const res = await cookApi.getCookDetail(id)
+      detail = res.data
+    }
+
+    this.detail = Object.assign({}, this.detail, detail)
+  }
 }
 
 const cook = new Cook()
