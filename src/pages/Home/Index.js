@@ -1,36 +1,21 @@
 import React, { Component } from 'react'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
+import {
+  observer
+} from 'mobx-react'
 import SearchBar from './SearchBar'
 import Tab from './Tab'
 import Content from './Content'
 import Banner from './Banner'
-import api from '../../api'
+import categores from '../../api/categores'
 
+@observer
 class Home extends Component {
-  state = {
-    recommendCategory: [],
-    activedIndex: 0,
-    category: [],
-  }
-
-  async componentDidMount() {
-    const res = await api.getCategores()
-
-    const recommendCategory = [].concat(res.data.recommend)
-
-    // 数据里前两种菜系提取出来，作为 tab，其他放进全部菜系里
-    this.setState(() => ({ recommendCategory, category: res.data.category }))
-  }
-
-  setActivedIndex(index) {
-    this.setState(() => ({ activedIndex: index }))
+  componentDidMount() {
+    categores.get()
   }
 
   render() {
-    const {
-      category, recommendCategory, activedIndex
-    } = this.state
-
     return (
       <WingBlank size="lg" className="Home">
         <WhiteSpace size="lg" />
@@ -38,14 +23,9 @@ class Home extends Component {
         <WhiteSpace size="lg" />
         <Banner />
         <WhiteSpace size="lg" />
-        <Tab
-          category={category}
-          recommendCategory={recommendCategory}
-          activedIndex={activedIndex}
-          setActivedIndex={index => this.setActivedIndex(index)}
-        />
+        <Tab />
         <WhiteSpace size="lg" />
-        <Content activedIndex={activedIndex} recommendCategory={recommendCategory} />
+        <Content />
       </WingBlank>
     )
   }

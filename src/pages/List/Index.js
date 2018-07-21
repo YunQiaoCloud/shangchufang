@@ -8,7 +8,7 @@ import SearchBar from '../Home/SearchBar'
 
 class List extends Component {
   state = {
-    activedIndex: 0,
+    activeIndex: 0,
     cooks: [
       {
         albums: {
@@ -40,14 +40,14 @@ class List extends Component {
   }
 
   async changeFood(index) {
-    this.setState(() => ({ activedIndex: index }))
+    this.setState(() => ({ activeIndex: index }))
 
     const res = await api.getCooks(data[index].id)
     this.setState(() => ({ cooks: res.data }))
   }
 
   render() {
-    const { activedIndex, cooks } = this.state
+    const { activeIndex, cooks } = this.state
     const cook = cooks.map((item) => {
       const style = {
         backgroundImage: `url(${item.albums[0]})`
@@ -68,7 +68,7 @@ class List extends Component {
         <a
           key={item.id}
           href="javascript:;"
-          className={activedIndex === index ? 'actived' : ''}
+          className={activeIndex === index ? 'active' : ''}
           onClick={() => this.changeFood(index)}
         >
           {item.name}

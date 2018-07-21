@@ -18,6 +18,7 @@
   ],
     "comments": false,
     "plugins": [
+        ["transform-decorators-legacy"],
         [
             "transform-runtime"
         ],

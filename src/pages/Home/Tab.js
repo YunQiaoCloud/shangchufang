@@ -1,32 +1,45 @@
-import React from 'react'
+import React, {
+  Component
+} from 'react'
+import {
+  observer
+} from 'mobx-react'
+import { toJS } from 'mobx'
+import categores from '../../api/categores'
 
-const Tab = function(props) {
-  const {
-    activedIndex, setActivedIndex, recommendCategory
-  } = props
+@observer class Tab extends Component {
+  setactiveIndex(index) {
+    categores.acviteIndex = index
+  }
 
-  // 第一个 tab 为“全部”按钮，显示所有菜系
-  const tabs = recommendCategory.map((item, index) => {
-    // 根据 props 的 slectedIndex 设置默认选中的 tab
-    const classNameStatus = index === activedIndex ? 'actived' : ''
+  render() {
+    const activeIndex = categores.acviteIndex
+    const categoresList = toJS(categores.recommendList)
+
+    // 第一个 tab 为“全部”按钮，显示所有菜系
+    const tabs = categoresList.map((item, index) => {
+      // 根据 props 的 slectedIndex 设置默认选中的 tab
+      const classNameStatus = index === activeIndex ? 'active' : ''
+      return (
+        <a
+          href="javascript:;"
+          className={`Home-tab-item ${classNameStatus}`}
+          key={item.id}
+          onClick={
+            () => this.setactiveIndex(index)
+          }
+        >
+          {item.name}
+        </a>
+      )
+    })
+
     return (
-      <a
-        href="javascript:;"
-        className={`Home-tab-item ${classNameStatus}`}
-        key={item.id}
-        onClick={() => setActivedIndex(index)}
-      >
-        {item.name}
-      </a>
+    // 根据 slectedIndex class 控制标签的位置
+      <div className={`Home-tab active-${activeIndex}`}>
+        {tabs}
+      </div>
     )
-  })
-
-  return (
-  // 根据 slectedIndex class 控制标签的位置
-    <div className={`Home-tab actived-${activedIndex}`}>
-      {tabs}
-    </div>
-  )
+  }
 }
-
 export default Tab

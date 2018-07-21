@@ -1,60 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import api from '../../api'
+import {
+  observer
+} from 'mobx-react'
+import { toJS } from 'mobx'
+import cook from '../../api/cook'
 
+@observer
 class Content extends Component {
-  state = {
-    list: []
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.getCook(nextProps)
-  }
-
-  async getCook(props) {
-    const { activedIndex, recommendCategory } = props
-    const { list } = this.state
-
-    // tab 第一个是手动添加进去的全部按钮，所以获取数据的时候要减去 1
-    const activedCategory = recommendCategory[activedIndex]
-    if (activedCategory) {
-      const res = await api.getCooks(recommendCategory[activedIndex].id)
-
-      // 只在第一次加载数据的时候显示动画
-      if (list.length) {
-        this.setState(() => ({ isShowAnimate: false }))
-      }
-
-      this.setState(() => ({ list: res.data }))
-    }
-  }
-
   render() {
-    const {
-      list
-    } = this.state
-
-    // 通过屏幕大小计算截取字符串的倍数
-    const documentWidth = document.documentElement.clientWidth
     let dom = null
+    const cookList = toJS(cook.list)
 
-    dom = list.map((item) => {
-      let imtro = item.imtro
-      // 大于1536 是 ipad，不用截取
-      if (documentWidth < 1536) {
-        // 默认宽度小于750的设备截取28个字符
-        let strLength = 28
-
-        if (documentWidth >= 750) {
-          strLength = 48
-        }
-
-        imtro = imtro.substr(0, strLength)
-
-        // 如果 imtro 并没有达到截取字数，不用加省略号
-        imtro += imtro.length === strLength ? '...' : ''
-      }
-
+    dom = cookList.map((item) => {
       return (
         <Link to={`/detail/${item.id}`} className="Home-content-item" key={item.id}>
           <div className="cover">
@@ -65,7 +23,7 @@ class Content extends Component {
               {item.title}
             </p>
             <p className="imtro">
-              {imtro}
+              {item.imtro}
             </p>
           </div>
         </Link>
@@ -73,7 +31,7 @@ class Content extends Component {
     })
 
     return (
-    // 根据 activedIndex class 控制标签的位置
+    // 根据 activeIndex class 控制标签的位置
       <div className="Home-content">
         { dom }
       </div>
