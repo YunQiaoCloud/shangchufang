@@ -3,12 +3,12 @@ import React, {
 } from 'react'
 import { withRouter } from 'react-router-dom'
 import { TabBar } from 'antd-mobile'
-import homeTab from '../../assets/home.svg'
-import listTab from '../../assets/list.svg'
-import collectionTab from '../../assets/collection.svg'
-import homeTabActive from '../../assets/home_active.svg'
-import listTabActive from '../../assets/list_active.svg'
-import collectionTabActive from '../../assets/collection_active.svg'
+import homeTab from '../assets/home.png'
+import listTab from '../assets/list.png'
+import collectionTab from '../assets/collection.png'
+import homeTabActive from '../assets/home_active.png'
+import listTabActive from '../assets/list_active.png'
+import collectionTabActive from '../assets/collection_active.png'
 
 class TabBarNav extends Component {
   state = {

@@ -5,7 +5,6 @@ import coverLoading from '../../assets/banner_loading.svg'
 import data from '../Home/tabMenuData'
 import api from '../../api'
 import SearchBar from '../Home/SearchBar'
-import TabBarNav from '../Home/TabBarNav'
 
 class List extends Component {
   state = {
@@ -90,7 +89,6 @@ class List extends Component {
             {cook}
           </div>
         </div>
-        <TabBarNav />
       </WingBlank>
     )
   }
