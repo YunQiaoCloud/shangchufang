@@ -2,7 +2,10 @@ import React, {
   Component
 } from 'react'
 import _ from 'lodash'
-import { WingBlank } from 'antd-mobile'
+import {
+  WingBlank,
+  WhiteSpace
+} from 'antd-mobile'
 import {
   toJS
 } from 'mobx'
