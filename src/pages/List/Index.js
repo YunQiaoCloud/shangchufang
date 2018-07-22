@@ -1,54 +1,37 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { WingBlank, WhiteSpace } from 'antd-mobile'
-import coverLoading from '../../assets/banner_loading.svg'
+import {
+  observer
+} from 'mobx-react'
+import {
+  toJS
+} from 'mobx'
+import categores from '../../api/categores'
 import data from '../Home/tabMenuData'
-import api from '../../api'
 import SearchBar from '../Home/SearchBar'
 
+@observer
 class List extends Component {
-  state = {
-    activeIndex: 0,
-    cooks: [
-      {
-        albums: {
-          0: coverLoading
-        },
-        id: '0',
-        title: '获取中...'
-      },
-      {
-        albums: {
-          0: coverLoading
-        },
-        id: '1',
-        title: '获取中...'
-      },
-      {
-        albums: {
-          0: coverLoading
-        },
-        id: '2',
-        title: '获取中...'
-      }
-    ]
-  }
-
-  componentDidMount() {
+  async componentDidMount() {
     // 加载时触发一下请求数据
-    this.changeFood(0)
+    await categores.get()
+
+    categores.activeIndex = 0
   }
 
   async changeFood(index) {
-    this.setState(() => ({ activeIndex: index }))
-
-    const res = await api.getCooks(data[index].id)
-    this.setState(() => ({ cooks: res.data }))
+    categores.activeIndex = index
   }
 
   render() {
-    const { activeIndex, cooks } = this.state
-    const cook = cooks.map((item) => {
+    const activeIndex = categores.activeIndex
+    const categoresList = toJS(categores.list)
+
+    // categoresList 有可能正在请求中，没有获取到数据，get 避免报错
+    const cooks = _.get(categoresList[activeIndex], 'cookList') || []
+
+    const cooksDom = cooks.map((item) => {
       const style = {
         backgroundImage: `url(${item.albums[0]})`
       }
@@ -68,7 +51,9 @@ class List extends Component {
         <a
           key={item.id}
           href="javascript:;"
-          className={activeIndex === index ? 'active' : ''}
+          className={
+            activeIndex === index ? 'active' : ''
+          }
           onClick={() => this.changeFood(index)}
         >
           {item.name}
@@ -82,11 +67,14 @@ class List extends Component {
         <SearchBar />
         <WhiteSpace size="lg" />
         <div className="Home-content-all">
+
           <div className="Sidebar">
-            {dom}
+            <div className="Sidebar-content">
+              {dom}
+            </div>
           </div>
           <div className="Home-content-all-cook">
-            {cook}
+            {cooksDom}
           </div>
         </div>
       </WingBlank>

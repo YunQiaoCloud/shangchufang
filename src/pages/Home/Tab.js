@@ -9,11 +9,11 @@ import categores from '../../api/categores'
 
 @observer class Tab extends Component {
   setactiveIndex(index) {
-    categores.acviteIndex = index
+    categores.activeIndex = index
   }
 
   render() {
-    const activeIndex = categores.acviteIndex
+    const activeIndex = categores.activeIndex
     const categoresList = toJS(categores.list)
 
     // tab 默认展示 4 个

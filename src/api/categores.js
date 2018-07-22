@@ -19,13 +19,10 @@ const categoresApi = Object.assign(
 )
 
 class Categores {
-  @observable acviteIndex = -1
+  @observable activeIndex = -1
 
   // 推荐
   @observable list = []
-
-  // 全部
-  @observable fullList = []
 
   @action async get() {
     if (!this.list.length) {

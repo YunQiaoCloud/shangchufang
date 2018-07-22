@@ -37,14 +37,14 @@ class Cook {
 
   // 计算属性不能走 await，所以采用 autorun 监听变化，手动设置 list
   computedList = reaction(() => {
-    // 监听 acviteIndex 变化，每次 acviteIndex 变化的时候传递给第二个参数内的函数获取数据
-    const acviteIndex = categores.acviteIndex
-    return acviteIndex
+    // 监听 activeIndex 变化，每次 activeIndex 变化的时候传递给第二个参数内的函数获取数据
+    const activeIndex = categores.activeIndex
+    return activeIndex
   },
-  async(acviteIndex) => {
-    // 根据 acviteIndex 获取对应数据
+  async(activeIndex) => {
+    // 根据 activeIndex 获取对应数据
     const list = toJS(categores.list)
-    const id = _.get(list[acviteIndex], 'id')
+    const id = _.get(list[activeIndex], 'id')
 
     if (typeof id !== 'undefined') {
       // 找到 id 对应的种类
@@ -61,7 +61,7 @@ class Cook {
       this.list = res.data
 
       // 写入 categores 种类信息里，下次再切换就无需重复获取，直接调用
-      categores.list[acviteIndex].cookList = res.data
+      categores.list[activeIndex].cookList = res.data
     }
   })
 

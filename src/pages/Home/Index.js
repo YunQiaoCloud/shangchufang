@@ -14,7 +14,7 @@ class Home extends Component {
   async componentDidMount() {
     // 数据加载完成后默认选项卡设置为第一个
     await categores.get()
-    categores.acviteIndex = 0
+    categores.activeIndex = 0
   }
 
   render() {
