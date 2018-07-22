@@ -1,7 +1,9 @@
 import {
   action,
-  observable
+  observable,
+  reaction
 } from 'mobx'
+import _ from 'lodash'
 import api from './index'
 
 const searchApi = Object.assign({
@@ -22,18 +24,26 @@ class Search {
   */
   @observable list = []
 
-  @action getBanner(q) {
-    const index = findIndex(this.list, ['q', q])
+  @observable currentList = []
+
+  @observable currentQ = ''
+
+  watchQ = reaction(() => this.currentQ, q => this.get(q))
+
+  @action async get(q) {
+    const index = _.findIndex(this.list, ['q', q])
 
     // 如果没有缓存的数据，获取一次
     if (index === -1) {
-      res = searchApi.get(q)
-
-      // 插入列表
-      this.list.push({
+      const res = await searchApi.get(q)
+      const data = {
         q,
-        list: res.data
-      })
+        cookList: res.data
+      }
+      // 插入列表
+      this.list.push(data)
+
+      this.currentList = [data]
     }
   }
 }

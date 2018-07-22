@@ -3,21 +3,26 @@ import {
   WingBlank,
   WhiteSpace
 } from 'antd-mobile'
+import {
+  observer
+} from 'mobx-react'
+import {
+  toJS
+} from 'mobx'
+import _ from 'lodash'
 import SearchBar from '../Home/SearchBar'
-import api from '../../api'
+import search from '../../api/search'
 
+@observer
 class Search extends Component {
-  state = {
-    cook: []
-  }
-
   componentDidMount() {
     const {
       location
     } = this.props
     const q = this.queryString(location.search)
-    this.setState(() => ({ q }))
-    this.search(q)
+
+    // 设置当前搜索内容，触发搜索操作
+    search.currentQ = q
   }
 
   queryString(src) {
@@ -31,27 +36,14 @@ class Search extends Component {
     return null
   }
 
-  async search(q) {
-    try {
-      const res = await api.search(q)
-      this.setState(() => ({ cook: res.data }))
-    } catch (err) {
-      this.setState(() => ({ cook: [] }))
-    }
-  }
-
   render() {
-    const {
-      cook
-    } = this.state
-
     const {
       location
     } = this.props
 
     const q = this.queryString(location.search)
-
-    const dom = cook.map((item) => {
+    const cooks = _.get(toJS(search.currentList[0]), 'cookList') || []
+    const dom = cooks.map((item) => {
       const style = {
         backgroundImage: `url(${item.albums[0]})`
       }
@@ -60,6 +52,7 @@ class Search extends Component {
       const style2 = {
         WebkitBoxOrient: 'vertical'
       }
+
       return (
         <a href="javascript:;" key={item.id} className="Search-item">
           <div
@@ -93,7 +86,7 @@ class Search extends Component {
       <WingBlank size="lg" className="Search">
         <WhiteSpace size="lg" />
         <SearchBar
-          defaultValue={
+          value={
             q
           }
           isHideCover

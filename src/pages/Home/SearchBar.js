@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import TweenOne from 'rc-tween-one'
+import {
+  observer
+} from 'mobx-react'
 import { SearchBar, WingBlank, WhiteSpace } from 'antd-mobile'
+import search from '../../api/search'
 
+@observer
 class SearchBarWrap extends Component {
   state = {
-    isFocus: false
+    isFocus: false,
+    value: ''
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState(() => ({ value: props.value }))
   }
 
   onFocus() {
@@ -28,17 +38,21 @@ class SearchBarWrap extends Component {
 
   onSubmit(value) {
     this.onCancel()
-    const onSearch = this.props
+    const { history } = this.props
+
     const path = {
       pathname: '/search',
       search: `q=${value}`
     }
-    onSearch.history.push(path)
+    history.push(path)
+
+    search.get(value)
   }
 
   render() {
     const {
-      isFocus
+      isFocus,
+      value
     } = this.state
 
     const dom = [1, 2].map((item, index) => {
@@ -56,6 +70,7 @@ class SearchBarWrap extends Component {
         <SearchBar
           placeholder="搜索菜谱"
           type="password"
+          value={value}
           onChange={val => this.onChange(val)}
           onFocus={() => this.onFocus()}
           onCancel={() => this.onCancel()}
