@@ -32,13 +32,12 @@ class List extends Component {
     const cooks = _.get(categoresList[activeIndex], 'cookList') || []
 
     const cooksDom = cooks.map((item) => {
-      const style = {
-        backgroundImage: `url(${item.albums[0]})`
-      }
       return (
         <Link to={`/detail/${item.id}`} className="Home-content-item" key={item.id}>
           <div className="cook">
-            <div className="cover" style={style} />
+            <div className="cover">
+              <img src={item.albums[0]} alt={item.title} />
+            </div>
             <p className="title">
               {item.title}
             </p>
