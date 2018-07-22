@@ -1,11 +1,32 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import TweenOne from 'rc-tween-one'
 import {
   observer
 } from 'mobx-react'
 import { SearchBar, WingBlank, WhiteSpace } from 'antd-mobile'
 import search from '../../api/search'
+
+const recommendList = [
+  {
+    title: '三明治'
+  },
+  {
+    title: '五彩炒饭'
+  },
+  {
+    title: '烤蛋堡'
+  },
+  {
+    title: '番茄花菜'
+  },
+  {
+    title: '核桃凉拌豌豆苗'
+  },
+  {
+    title: '黄金飘香肉丸'
+  }
+]
 
 @observer
 class SearchBarWrap extends Component {
@@ -55,13 +76,16 @@ class SearchBarWrap extends Component {
       value
     } = this.state
 
-    const dom = [1, 2].map((item, index) => {
+    const searchRecommend = recommendList.map((item) => {
       return (
-        <div className="Home-search-recommend-item" onClick={e => e.stopPropagation()} key={item}>
-          清蒸鲈鱼
-          {' '}
-          {index}
-        </div>
+        <Link
+          to={`/search?q=${item.title}`}
+          className="Home-search-recommend-item"
+          onClick={e => e.stopPropagation()}
+          key={item.id}
+        >
+          {item.title}
+        </Link>
       )
     })
 
@@ -93,7 +117,7 @@ class SearchBarWrap extends Component {
                     推荐搜索
                   </h6>
                   <WhiteSpace size="lg" />
-                  {dom}
+                  {searchRecommend}
                 </WingBlank>
               </TweenOne>
 
