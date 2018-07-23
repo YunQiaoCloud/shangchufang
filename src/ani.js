@@ -11,7 +11,7 @@ class LogoGather extends React.Component {
 
   gather = true
 
-  intervalTime = 3000
+  intervalTime = 1500
 
   static defaultProps = {
     image: 'https://zos.alipayobjects.com/rmsportal/gsRUrUdxeGNDVfO.svg',
