@@ -12,7 +12,16 @@ import collectionTabActive from '../assets/collection_active.png'
 
 class TabBarNav extends Component {
   state = {
-    hidden: false
+    hidden: false,
+    isIphoneX: false
+  }
+
+  componentDidMount() {
+    if (navigator.userAgent.match(/(iPhone)/)) {
+      if (window.screen.availHeight === 812 && window.screen.availWidth === 375) {
+        this.setState(() => ({ isIphoneX: true }))
+      }
+    }
   }
 
   onPress(switchTab) {
@@ -28,18 +37,18 @@ class TabBarNav extends Component {
   }
 
   render() {
-    const tabBarState = this.state
+    const { isIphoneX, hidden } = this.state
     const switchTab = this.props
 
     return (
       <div
-        className="Tab-bar"
+        className={`Tab-bar ${isIphoneX ? 'is-iphonex-10' : null}`}
       >
         <TabBar
           unselectedTintColor="#949494"
           tintColor="#33A3F4"
           barTintColor="white"
-          hidden={tabBarState.hidden}
+          hidden={hidden}
         >
           <TabBar.Item
             icon={{ uri: homeTab }}

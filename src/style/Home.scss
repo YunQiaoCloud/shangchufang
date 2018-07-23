@@ -208,4 +208,9 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  background-color: #fff;
+
+  &.is-iphonex-10 {
+    padding-bottom: 30px;
+  }
 }
