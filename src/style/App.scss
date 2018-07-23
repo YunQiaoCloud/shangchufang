@@ -4,6 +4,16 @@ body,
   background: #fff;
 }
 
+.is-disabled-scroll {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
 * {
   touch-action: none;
 }
@@ -21,6 +31,7 @@ body {
 .vertical {
   -webkit-box-orient: vertical;
 }
+
 .logo-gather-demo-edit-wrapper {
   position: absolute;
   bottom: 0;
@@ -28,12 +39,14 @@ body {
   background: #f1f1f1;
   padding: 0 5%;
   line-height: 45px;
+  transform: matrix3d(0, 0, 0);
 }
 
 .logo-gather-demo-edit-wrapper ul {
   display: block;
   width: 100%;
   overflow: hidden;
+  transform: matrix3d(0, 0, 0);
 }
 
 .logo-gather-demo-edit-wrapper ul li:first-child {
@@ -44,6 +57,7 @@ body {
   float: left;
   vertical-align: middle;
   margin: 0 5px;
+  transform: matrix3d(0, 0, 0);
 }
 
 .logo-gather-demo-wrapper {
@@ -74,6 +88,7 @@ body {
   bottom: 0;
   left: 0;
   margin: auto;
+  transform: matrix3d(0, 0, 0);
 }
 
 .logo-gather-demo-wrapper .right-side * {

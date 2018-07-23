@@ -21,18 +21,11 @@ class LogoGather extends React.Component {
     pointSizeMin: 10,
   };
 
-  state ={
-    isShow: true
-  }
+  state = {}
 
   componentDidMount() {
     this.dom = ReactDOM.findDOMNode(this)
     this.createPointData()
-
-    setTimeout(() => {
-      console.log(1)
-      this.setState(() => {isShow: false})
-    }, 4000)
   }
 
 componentWillUnmount() {
@@ -142,7 +135,6 @@ componentWillUnmount() {
     const sideTop = sideRect.top - rect.top
     const sideLeft = sideRect.left - rect.left
     const children = this.state.children.map(item => React.cloneElement(item, {
-
       animation: {
         x: Math.random() * rect.width - sideLeft - item.props.style.left,
         y: Math.random() * rect.height - sideTop - item.props.style.top,
@@ -158,9 +150,8 @@ componentWillUnmount() {
     })
 
     setTimeout(() => {
-      console.log(this.props)
       this.props.setHidden()
-    }, 1000)
+    }, 700)
   };
 
   updateTweenData = () => {

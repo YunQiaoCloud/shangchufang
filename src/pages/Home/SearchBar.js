@@ -36,7 +36,7 @@ class SearchBarWrap extends Component {
   }
 
   componentWillReceiveProps(props) {
-    this.setState(() => ({ value: props.value }))
+    this.setState(() => ({ value: props.value || '' }))
   }
 
   onFocus() {

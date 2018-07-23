@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <Router>
         <RouterScroll>
-          <div className="App">
+          <div className={`App ${isShowAni ? 'is-disabled-scroll' : ''}`}>
             {
               isShowAni
                 ? (
