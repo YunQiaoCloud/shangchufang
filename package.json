@@ -100,6 +100,7 @@
     "mobx-react": "^5.2.3",
     "normalize.css": "^8.0.0",
     "prop-types": "^15.5.10",
+    "rc-animate": "^2.4.4",
     "rc-queue-anim": "^1.6.5",
     "rc-tween-one": "^2.2.2",
     "react": "^15.5.4",
