@@ -19,7 +19,9 @@ class App extends Component {
   }
 
   render() {
-    const { isShowAni } = this.state
+    // 必须得不再开发模式，才显示 loading 动画
+    const isShowAni = this.state.isShowAni && process.env.NODE_ENV !== 'development'
+
     return (
       <Router>
         <RouterScroll>
