@@ -4,7 +4,8 @@ import React, {
 import _ from 'lodash'
 import {
   WingBlank,
-  WhiteSpace
+  WhiteSpace,
+  Button
 } from 'antd-mobile'
 import {
   toJS
@@ -15,11 +16,40 @@ import {
 import cook from '../../api/cook'
 
 @observer class Detail extends Component {
+  state = {
+    isFavorite: false
+  }
+
   componentDidMount() {
     cook.getDetail(this.props.match.params.id)
   }
 
+  favorite() {
+    const collectCook = {}
+    const storage = window.localStorage
+    const id = cook.detail.id
+    const favoriteId = `id_${id}`
+    collectCook[favoriteId] = true
+    console.log(collectCook)
+
+    // if (collectCook[favoriteId] === false) {
+    //   collectCook[favoriteId] = true
+    //   storage.setItem('collectCook', collectCook)
+    //   this.setState(() => ({ isFavorite: true }))
+    //   console.log(storage.collectCook)
+    // } else {
+    //   collectCook[favoriteId] = false
+    //   storage.setItem('collectCook', collectCook)
+    //   this.setState(() => ({ isFavorite: false }))
+    //   console.log(storage.collectCook)
+    // }
+  }
+
   render() {
+    const {
+      isFavorite
+    } = this.state
+
     const detail = toJS(cook.detail)
 
     const coverStyle = {
@@ -67,6 +97,11 @@ import cook from '../../api/cook'
         <WingBlank>
           <h1 className="Detail-title" title={detail.title}>
             {detail.title}
+            <Button className="Favorite" onClick={() => this.favorite()} type="primary">
+              {
+                isFavorite ? '收藏' : '取消收藏'
+              }
+            </Button>
           </h1>
           <div className="Detail-tag">
             {tagDom}

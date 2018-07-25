@@ -7,9 +7,19 @@
 }
 
 .Detail-title {
+  display: flex;
+  align-items: center;
   margin: 60px 0;
   font-size: 40px;
   color: #181818;
+
+  .Favorite {
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 20px;
+    font-size: 25px;
+  }
 }
 
 .Detail-tag {
