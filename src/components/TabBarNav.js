@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom'
 import { TabBar } from 'antd-mobile'
 import homeTab from '../assets/home.png'
 import listTab from '../assets/list.png'
-import collectTabActive from '../assets/Collect.png'
+import collectTabActive from '../assets/collect.png'
 import homeTabActive from '../assets/home_active.png'
 import listTabActive from '../assets/list_active.png'
-import collectTabActiveActive from '../assets/Collect_active.png'
+import collectTabActiveActive from '../assets/collect_active.png'
 
 class TabBarNav extends Component {
   state = {
