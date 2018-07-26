@@ -14,43 +14,27 @@ import {
   observer
 } from 'mobx-react'
 import cook from '../../api/cook'
+import storageCollectCooks from '../../api/storageCollectCooks'
 
 @observer class Detail extends Component {
-  state = {
-    isFavorite: false
-  }
-
   componentDidMount() {
+    storageCollectCooks.get()
     cook.getDetail(this.props.match.params.id)
   }
 
-  favorite() {
-    const collectCook = {}
-    const storage = window.localStorage
-    const id = cook.detail.id
-    const favoriteId = `id_${id}`
-    collectCook[favoriteId] = true
-    console.log(collectCook)
-
-    // if (collectCook[favoriteId] === false) {
-    //   collectCook[favoriteId] = true
-    //   storage.setItem('collectCook', collectCook)
-    //   this.setState(() => ({ isFavorite: true }))
-    //   console.log(storage.collectCook)
-    // } else {
-    //   collectCook[favoriteId] = false
-    //   storage.setItem('collectCook', collectCook)
-    //   this.setState(() => ({ isFavorite: false }))
-    //   console.log(storage.collectCook)
-    // }
+  onCollect(state) {
+    const cookDetail = toJS(cook.detail)
+    storageCollectCooks.set(Object.assign({}, cookDetail, { state }))
   }
 
   render() {
-    const {
-      isFavorite
-    } = this.state
-
     const detail = toJS(cook.detail)
+    const collectCooks = toJS(storageCollectCooks.list)
+    let isCollected = false
+    const index = _.findIndex(collectCooks, ['id', this.props.match.params.id])
+
+    // 判断收藏状态，state 为 true 则是收藏
+    isCollected = _.get(collectCooks, `[${index}].state`)
 
     const coverStyle = {
       backgroundImage: `url(${_.get(detail.albums, '[0]')})`
@@ -97,9 +81,9 @@ import cook from '../../api/cook'
         <WingBlank>
           <h1 className="Detail-title" title={detail.title}>
             {detail.title}
-            <Button className="Favorite" onClick={() => this.favorite()} type="primary">
+            <Button className="Favorite" onClick={() => this.onCollect(!isCollected)} type="primary">
               {
-                isFavorite ? '收藏' : '取消收藏'
+                isCollected ? '取消收藏' : '收藏'
               }
             </Button>
           </h1>

@@ -5,10 +5,10 @@ import { withRouter } from 'react-router-dom'
 import { TabBar } from 'antd-mobile'
 import homeTab from '../assets/home.png'
 import listTab from '../assets/list.png'
-import collectionTab from '../assets/collection.png'
+import collectTabActive from '../assets/Collect.png'
 import homeTabActive from '../assets/home_active.png'
 import listTabActive from '../assets/list_active.png'
-import collectionTabActive from '../assets/collection_active.png'
+import collectTabActiveActive from '../assets/Collect_active.png'
 
 class TabBarNav extends Component {
   state = {
@@ -72,14 +72,14 @@ class TabBarNav extends Component {
             }}
           />
           <TabBar.Item
-            icon={{ uri: collectionTab }}
-            selectedIcon={{ uri: collectionTabActive }}
+            icon={{ uri: collectTabActive }}
+            selectedIcon={{ uri: collectTabActiveActive }}
             title="收藏"
-            key="Collection"
-            selected={switchTab.location.pathname === '/collection'}
+            key="collect"
+            selected={switchTab.location.pathname === '/collect'}
             onPress={() => {
               const path = {
-                pathname: '/collection'
+                pathname: '/collect'
               }
               switchTab.history.push(path)
             }}

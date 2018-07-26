@@ -61,7 +61,9 @@ class Cook {
       this.list = res.data
 
       // 写入 categores 种类信息里，下次再切换就无需重复获取，直接调用
-      categores.list[activeIndex].cookList = res.data
+      if (!_.get(categores.list[activeIndex], 'cookList.length')) {
+        categores.list[activeIndex].cookList = res.data
+      }
     }
   })
 

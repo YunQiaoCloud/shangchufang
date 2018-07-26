@@ -2,8 +2,6 @@ import React, {
   Component
 } from 'react'
 import {
-  WingBlank,
-  WhiteSpace,
   Carousel
 } from 'antd-mobile'
 import {
@@ -39,22 +37,19 @@ class Recommend extends Component {
 
     return (
       <div className="Recommend">
-        <WingBlank>
-          <span>今日推荐</span>
-          <p>红烧兔兔</p>
-          <h3>这是一段介绍文字！</h3>
-          <Carousel
-            className="space-carousel"
-            frameOverflow="visible"
-            cellSpacing={10}
-            slideWidth={0.8}
-            autoplay
-            infinite
-          >
-            {dom}
-          </Carousel>
-          <WhiteSpace size="lg" />
-        </WingBlank>
+        <span>今日推荐</span>
+        <p>汤子莲子藕</p>
+        <h3>这是一段介绍文字！</h3>
+        <Carousel
+          className="space-carousel"
+          frameOverflow="visible"
+          cellSpacing={10}
+          slideWidth={0.8}
+          autoplay
+          infinite
+        >
+          {dom}
+        </Carousel>
       </div>
     )
   }
